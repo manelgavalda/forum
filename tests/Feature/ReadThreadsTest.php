@@ -35,7 +35,7 @@ class ThreadsTest extends TestCase
     {
         factory('App\Reply')->create(['thread_id' => $this->thread->id]);
 
-        $this->get('/threads/'. $this->thread->id)
+        $this->get($this->thread->path())
             ->assertSee($this->thread->replies->first()->body);
     }
 }
