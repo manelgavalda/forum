@@ -24,5 +24,21 @@
             </div>
         </div>
     </div>
+    @if (auth()->check())
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <form method="post" action="{{ "{$thread->path()}/replies" }}">
+                        @csrf
+                        <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
+
+                        <button type="submit" class="btn btn-default">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @else
+        <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to participate in the discussion.</p>
+    @endif
 </div>
 @endsection
