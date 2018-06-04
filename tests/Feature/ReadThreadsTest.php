@@ -26,7 +26,7 @@ class ThreadsTest extends TestCase
     /** @test */
     public function a_user_can_view_a_single_thread()
     {
-        $this->get('/threads/'. $this->thread->id)
+        $this->get('/threads/some-channel/'. $this->thread->id)
             ->assertSee($this->thread->title);
     }
 
