@@ -36,6 +36,17 @@
                     <ul class="navbar-nav mr-auto">
                         <li><a class="navbar-brand" href="/threads">All Threads</a></li>
                         <li><a class="navbar-brand" href="/threads/create">New Thread</a></li>
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My Threads
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/threads">All Threads</a>
+                            @if (auth()->check())
+                                <a class="dropdown-item" href="/threads_by={{ auth()->user()->name }}">My Threads</a>
+                            @endif
+                          </div>
+                        </div>
 
                         <div class="dropdown">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
