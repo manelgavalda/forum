@@ -25,15 +25,15 @@ class ThreadController extends Controller
         return view('threads.index', compact('threads'));
     }
 
-    public function getThreads()
+    public function getThreads($channel, $filters)
     {
-        Thread::latest()->filter($filters);
+        $threads = Thread::latest()->filter($filters);
 
         if ($channel->exists) {
             $threads->where('channel_id', $channel->id);
         }
 
-        $threads = $threads->get();
+        return $threads->get();
     }
 
     /**
