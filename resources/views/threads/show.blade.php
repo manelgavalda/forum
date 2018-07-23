@@ -10,12 +10,14 @@
                         <span class="flex">
                             <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted: {{ $thread->title }}
                         </span>
-                        <form action="{{ $thread->path() }}" method="POST">
-                            @csrf
-                            {{ method_field('DELETE') }}
+                        @can('update', $thread)
+                            <form action="{{ $thread->path() }}" method="POST">
+                                @csrf
+                                {{ method_field('DELETE') }}
 
-                            <button type="submit" class="btn btn-link">Delete Thread</button>
-                        </form>
+                                <button type="submit" class="btn btn-link">Delete Thread</button>
+                            </form>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">
@@ -28,7 +30,7 @@
 
             {{ $replies->links() }}
 
-            @if (auth()->check())
+            @if(auth()->check())
                 <form method="post" action="{{ "{$thread->path()}/replies" }}">
                     @csrf
                     <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
