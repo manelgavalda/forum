@@ -39,7 +39,7 @@ trait RecordsActivity
 
     protected function getActivityType($event)
     {
-        $type = strtolower((new \ReflectionClass($this))->getShortName());
+        $type = strtolower(class_basename($this));
 
         return "{$event}_{$type}";
     }
