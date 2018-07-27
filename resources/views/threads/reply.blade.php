@@ -20,7 +20,7 @@
 
     @can('update', $reply)
         <div class="card-footer">
-            <form method="POST" action="/repleis/{{ $reply->id }}">
+            <form method="POST" action="/replies/{{ $reply->id }}">
                 @csrf
                 {{ method_field('DELETE')}}
 
