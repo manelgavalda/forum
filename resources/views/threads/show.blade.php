@@ -26,20 +26,11 @@
                         </div>
                     </div>
 
-                    <replies :data="{{ $thread->replies }}" @removed="repliesCount--" can-update="{{ Auth::user()->can('update', $thread) }}"></replies>
+                    <replies :data="{{ $thread->replies }}"
+                        @added="repliesCount++"
+                        @removed="repliesCount--"></replies>
 
                     {{-- {{ $replies->links() }} --}}
-
-                    @if(auth()->check())
-                        <form method="post" action="{{ "{$thread->path()}/replies" }}">
-                            @csrf
-                            <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
-
-                            <button type="submit" class="btn btn-default">Post</button>
-                        </form>
-                    @else
-                        <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to participate in the discussion.</p>
-                    @endif
                 </div>
                 <div class="col-md-4">
                     <div class="card">
