@@ -26,17 +26,13 @@
                         </div>
                     </div>
 
-                    <replies :data="{{ $thread->replies }}"
-                        @added="repliesCount++"
-                        @removed="repliesCount--"></replies>
-
-                    {{-- {{ $replies->links() }} --}}
+                    <replies @added="repliesCount++" @removed="repliesCount--"></replies>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <p>
-                                Thsi thread was published {{ $thread->created_at->diffForHumans() }} by
+                                This thread was published {{ $thread->created_at->diffForHumans() }} by
                                 <a href="#">{{ $thread->creator->name }}</a>, and currently has <span v-text="repliesCount"></span> {{ str_plural('comment', $thread->replies_count) }}.
                             </p>
                         </div>
