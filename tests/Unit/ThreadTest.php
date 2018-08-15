@@ -56,4 +56,36 @@ class ThreadTest extends TestCase
 
         $this->assertInstanceOf('App\Channel', $thread->channel);
     }
+
+    /** @test */
+    public function a_thread_can_be_subscribed_to()
+    {
+        $thread = create('App\Thread');
+
+        $this->signIn($user = User::find(1));
+
+        $thread->subscribe();
+
+        $this->assertEquals(
+            1,
+            $thread->subscriptions()->where('user_id', $user->id)->count()
+        );
+    }
+
+    /** @test */
+    public function a_thread_can_be_unsubscribed_from()
+    {
+        $thread = create('App\Thread');
+
+        $this->signIn($user = User::find(1));
+
+        $thread->subscribe();
+
+        $thread->unsubscribe();
+
+        $this->assertEquals(
+            0,
+            $thread->subscriptions()->where('user_id', $user->id)->count()
+        );
+    }
 }
