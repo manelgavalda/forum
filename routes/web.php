@@ -27,6 +27,7 @@ Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store');
 Route::get('/threads/{channel}/{thread}/replies', 'ReplyController@index');
 Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::delete('/replies/{reply}', 'ReplyController@destroy');
+Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
 
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
