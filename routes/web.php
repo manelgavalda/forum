@@ -18,16 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/threads/create', 'ThreadController@create');
-Route::get('/threads/{channel?}', 'ThreadController@index');
-Route::get('/threads/{channel}/{thread}', 'ThreadController@show');
-Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
-Route::post('threads', 'ThreadController@store');
+Route::get('/threads/create', 'ThreadsController@create');
+Route::get('/threads/{channel?}', 'ThreadsController@index');
+Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
+Route::delete('/threads/{channel}/{thread}', 'ThreadsController@destroy');
+Route::post('threads', 'ThreadsController@store');
 Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store');
 Route::get('/threads/{channel}/{thread}/replies', 'ReplyController@index');
 Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::delete('/replies/{reply}', 'ReplyController@destroy');
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
+Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
 
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');

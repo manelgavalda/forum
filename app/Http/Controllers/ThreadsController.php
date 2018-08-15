@@ -7,7 +7,7 @@ use App\Channel;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 
-class ThreadController extends Controller
+class ThreadsController extends Controller
 {
     public function __construct()
     {
