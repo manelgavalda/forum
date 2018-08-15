@@ -23,9 +23,4 @@ class ThreadSubscription extends Model
     {
         $this->user->notify(new ThreadWasUpdated($this->thread, $reply));
     }
-
-    public function isNotReplyUser($reply)
-    {
-        return $this->user_id != $reply->user_id;
-    }
 }
