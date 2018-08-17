@@ -32,13 +32,13 @@ class ReadThreadsTest extends TestCase
     }
 
     /** @test */
-    public function aUserCanFilterThreadsAccordingToAChannel()
+    public function a_user_can_filter_threads_according_to_a_channel()
     {
         $channel = create('App\Channel');
         $threadInChannel = create('App\Thread', ['channel_id' => $channel->id]);
         $threadNotInChannel = create('App\Thread');
 
-        $this->get("threads/{$channel->slug}")
+        $this->get("/threads/{$channel->slug}")
             ->assertSee($threadInChannel->title)
             ->assertDontSee($threadNotInChannel->title);
     }
@@ -67,13 +67,9 @@ class ReadThreadsTest extends TestCase
 
         $threadWithNoReplies = $this->thread;
 
-        $response = $this->get('threads?popular=1');
+        $response = $this->getJson('threads?popular=1')->json();
 
-        $response->assertSeeInOrder([
-            $threadWithThreeReplies->title,
-            $threadWithTwoReplies->title,
-            $threadWithNoReplies->title
-        ]);
+        $this->assertEquals([3, 2, 0], array_column($response, 'replies_count'));
     }
 
     /** @test */
