@@ -40,21 +40,14 @@ class RepliesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($channelId, Thread $thread, Spam $spam)
+    public function store($channelId, Thread $thread)
     {
-        request()->validate([
-            'body' => 'required'
-        ]);
-
-        $spam->detect(request('body'));
-
-
+        $this->validateReply();
 
         $reply = $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),
         ]);
-
 
         if (request()->expectsJson()) {
             return $reply->load('owner');
@@ -63,38 +56,11 @@ class RepliesController extends Controller
         return back()->with('flash', 'Your reply has been left');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reply $reply)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reply $reply)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Reply $reply)
+    public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
+
+        $this->validateReply();
 
         $reply->update(request(['body']));
     }
@@ -116,5 +82,12 @@ class RepliesController extends Controller
         }
 
         return back();
+    }
+
+    public function validateReply()
+    {
+        request()->validate(['body' => 'required']);
+
+        resolve(Spam::class)->detect(request('body'));
     }
 }
