@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Gate;
 use App\Reply;
 use App\Thread;
 use App\Rules\SpamFree;
@@ -42,19 +43,20 @@ class RepliesController extends Controller
      */
     public function store($channelId, Thread $thread)
     {
-        try {
-            request()->validate(['body' => 'required|spamfree']);
+        if (Gate::denies('create', new Reply)) {
+            return response('You are posting too frequenly. Please take a break. :)', 422);
+        }
 
-            $reply = $thread->addReply([
+        try {
+            request()->validate(['body' => ['required', new SpamFree]]);
+
+            return $thread->addReply([
                 'body' => request('body'),
                 'user_id' => auth()->id(),
-            ]);
+            ])->load('owner');
         } catch (\Exception $e) {
             return response('Sorry, your reply could not be saved at this time.', 422);
         }
-
-
-        return $reply->load('owner');
     }
 
     public function update(Reply $reply)
@@ -62,7 +64,7 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         try {
-            request()->validate(['body' => ['required', new SpamFree]);
+            request()->validate(['body' => ['required', new SpamFree]]);
 
             $reply->update(request(['body']));
         } catch (\Exception $e) {
