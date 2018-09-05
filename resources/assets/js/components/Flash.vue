@@ -19,6 +19,7 @@
     },
 
     created() {
+      console.log('tortoroc')
       if (this.message) {
         this.flash(this.message);
       }
