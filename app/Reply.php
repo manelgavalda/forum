@@ -50,8 +50,13 @@ class Reply extends Model
 
     public function mentionedUsers()
     {
-        preg_match_all('/\@([^\s\.]+)/', $this->body, $matches);
+        preg_match_all('/@([\w\-]+)/', $this->body, $matches);
 
         return User::whereIn('name', $matches[1])->get();
+    }
+
+    public function setBodyAttribute($value)
+    {
+        $this->attributes['body'] = preg_replace('/@([\w\-]+)/', '<a href="/profiles/$1">$0</a>', $value);
     }
 }
