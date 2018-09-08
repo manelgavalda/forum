@@ -28,4 +28,17 @@ class ReplyTest extends TestCase
 
         $this->assertFalse($reply->wasJustPublished());
     }
+
+    /** @test */
+    public function it_can_detect_all_mentioned_users_in_the_body()
+    {
+        $john = create('App\User', ['name' => 'JaneDoe']);
+        $jane = create('App\User', ['name' => 'JohnDoe']);
+
+        $reply = create('App\Reply', [
+            'body' => '@JaneDoe wans to talk to @JohnDoe'
+        ]);
+
+        $this->assertCount(2, $reply->mentionedUsers());
+    }
 }
