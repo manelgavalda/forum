@@ -21,6 +21,6 @@ class ThreadSubscription extends Model
 
     public function notify($reply)
     {
-        $this->user->notify(new ThreadWasUpdated($this->thread, $reply));
+        $this->user->notify(new ThreadWasUpdated($reply));
     }
 }
