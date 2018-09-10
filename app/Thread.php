@@ -11,6 +11,7 @@ class Thread extends Model
     use RecordsActivity;
 
     protected $guarded = [];
+
     protected $with = ['creator', 'channel'];
 
     protected $appends = ['isSubscribedTo'];
@@ -96,5 +97,10 @@ class Thread extends Model
         $key = auth()->user()->visitedThreadCacheKey($this);
 
         return $this->updated_at > cache($key);
+    }
+
+    public function visits()
+    {
+        return new Visits($this);
     }
 }
