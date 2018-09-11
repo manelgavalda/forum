@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -64,7 +63,7 @@ class User extends Authenticatable
     {
         cache()->forever(
             $this->visitedThreadCacheKey($thread),
-            Carbon::now()
+            now()
         );
     }
 
