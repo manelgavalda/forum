@@ -50,7 +50,7 @@
         editing: false,
         id: this.data.id,
         body: this.data.body,
-        isBest: false,
+        isBest: this.data.isBest,
         reply: this.data
       };
     },
@@ -60,10 +60,14 @@
         return moment(this.data.created_at).fromNow() + '...';
       }
     },
-
+    created() {
+      window.events.$on('best-reply-selected', id => {
+        this.isBest = (id === this.id)
+      });
+    },
     methods: {
       update() {
-        axios.patch('/replies/' + this.data.id, {
+        axios.patch('/replies/' + this.id, {
           body: this.body
         }).catch(error => {
           flash(error.response.data, 'danger');
@@ -74,12 +78,14 @@
         flash('Updated!');
       },
       destroy() {
-        axios.delete('/replies/' + this.data.id);
+        axios.delete('/replies/' + this.id);
 
-        this.$emit('deleted', this.data.id);
+        this.$emit('deleted', this.id);
       },
       markBestReply() {
-        this.isBest = true;
+        axios.post('/replies/' + this.id + '/best');
+
+        window.events.$emit('best-reply-selected', this.id);
       }
     }
   }
