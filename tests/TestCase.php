@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use DB;
+use Schema;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        DB::statement('PRAGMA foreign_keys=on');
+        Schema::enableForeignKeyConstraints();
 
         $this->withoutExceptionHandling();
     }
