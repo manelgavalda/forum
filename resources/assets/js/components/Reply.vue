@@ -28,7 +28,7 @@
   </div>
 
   <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
-    <div v-if="authorize('updateReply', reply)">
+    <div v-if="authorize('owns', reply)">
       <button class="btn btn-xs mr-1" @click="editing = true">Edit</button>
       <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
     </div>

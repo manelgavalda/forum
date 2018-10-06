@@ -30383,7 +30383,7 @@ window.Vue = __webpack_require__(161);
 var authorizations = __webpack_require__(164);
 
 Vue.prototype.authorize = function () {
-    if (!window.App.user.signedIn) return false;
+    if (!window.App.signedIn) return false;
 
     for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
         params[_key] = arguments[_key];
@@ -65585,7 +65585,7 @@ var render = function() {
       _vm.authorize("owns", _vm.reply) ||
       _vm.authorize("owns", _vm.reply.thread)
         ? _c("div", { staticClass: "card-footer level" }, [
-            _vm.authorize("updateReply", _vm.reply)
+            _vm.authorize("owns", _vm.reply)
               ? _c("div", [
                   _c(
                     "button",
