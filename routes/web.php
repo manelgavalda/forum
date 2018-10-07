@@ -19,10 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/threads/create', 'ThreadsController@create');
-Route::get('/threads/{channel?}', 'ThreadsController@index')->name('threads');
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
+Route::patch('/threads/{channel}/{thread}', 'ThreadsController@update')->name('threads.update');
 Route::delete('/threads/{channel}/{thread}', 'ThreadsController@destroy');
 Route::post('threads', 'ThreadsController@store')->middleware('must-be-confirmed');
+Route::get('/threads/{channel?}', 'ThreadsController@index')->name('threads');
+
+Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('admin');
+
 Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
 Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index');
 Route::patch('/replies/{reply}', 'RepliesController@update');
