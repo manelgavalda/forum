@@ -15,10 +15,8 @@ class Administrator
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            return $next($request);
-        }
+        abort_unless(auth()->check() && auth()->user()->isAdmin(), 403, 'You do not have permission to do this action');
 
-        abort(403, 'You do not have permission to do this action');
+        return $next($request);
     }
 }
