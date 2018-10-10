@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Zttp\Zttp;
 use App\Thread;
 use App\Channel;
 use App\Trending;
 use App\Rules\SpamFree;
+use App\Rules\Recaptcha;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 
@@ -62,25 +62,14 @@ class ThreadsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Recaptcha $recaptcha)
     {
         request()->validate([
-            'title'         => ['required', new SpamFree],
-            'body'          => ['required', new SpamFree],
-            'channel_id'    => 'required|exists:channels,id'
+            'title'                 => ['required', new SpamFree],
+            'body'                  => ['required', new SpamFree],
+            'channel_id'            => 'required|exists:channels,id',
+            'g-recaptcha-response'  => ['required', $recaptcha]
         ]);
-
-        $response = Zttp::asFormParams()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => config('services.recaptcha.secret'),
-            'response' => request('g-recaptcha-response'),
-            'remoteip' => request()->ip()
-        ]);
-
-        if (! $response->json()['success']) {
-            abort(403, 'Forbidden');
-        }
-
-        // Guzzle
 
         $thread = Thread::create([
             'user_id' => auth()->id(),
