@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/threads/create', 'ThreadsController@create');
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
+Route::patch('/threads/{channel}/{thread}', 'ThreadsController@update');
 Route::patch('/threads/{channel}/{thread}', 'ThreadsController@update')->name('threads.update');
 Route::delete('/threads/{channel}/{thread}', 'ThreadsController@destroy');
 Route::post('threads', 'ThreadsController@store')->middleware('must-be-confirmed');
