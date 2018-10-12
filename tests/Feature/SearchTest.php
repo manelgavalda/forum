@@ -19,7 +19,7 @@ class SearchTest extends TestCase
 
         create('App\Thread', [], 2);
         create('App\Thread', ['body' => "A thread with the {$search} term."], 2);
-
+''
         do {
             sleep(.25);
 
