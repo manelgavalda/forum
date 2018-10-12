@@ -11,14 +11,44 @@
       return {
         repliesCount: this.thread.replies_count,
         locked: this.thread.locked,
-        editing: false
+        editing: false,
+        title: this.thread.title,
+        body: this.thread.body,
+        form: {
+          title: this.thread.title,
+          body: this.thread.body
+        }
       }
+    },
+    created() {
+      this.resetForm();
     },
     methods: {
       toogleLock() {
-        axios[this.locked ? 'delete' : 'post']('/locked-threads/' + this.thread.slug);
+        const uri = `/locked-threads/${this.thread.slug}`;
+
+        axios[this.locked ? 'delete' : 'post'](uri);
 
         this.locked = ! this.locked;
+      },
+      update() {
+        const uri = `/threads/${this.thread.channel.slug}/${this.thread.slug}`;
+
+        axios.patch(uri, this.form).then(() => {
+          this.editing = false;
+          this.title = this.form.title;
+          this.body = this.form.body;
+
+          flash('Your thread has been updated');
+        });
+      },
+      resetForm() {
+        this.form = {
+          title: this.thread.title,
+          body : this.thread.body
+        };
+
+        this.editing = false;
       }
     }
   }
