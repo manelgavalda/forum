@@ -28,7 +28,8 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea id="body" class="form-control" name="body" value="{{ old('body') }}" rows="8" required></textarea>
+                                <wysiwyg name="body"></wysiwyg>
+                            {{-- <textarea id="body" class="form-control" name="body" value="{{ old('body') }}" rows="8" required></textarea> --}}
                         </div>
 
                         <div class="g-recaptcha" data-sitekey="6Lc-bXQUAAAAAHrwa9nPNNKa-w-crtNY6OmoajP5"></div>
