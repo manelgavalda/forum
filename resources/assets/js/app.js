@@ -9,6 +9,10 @@
 
  window.Vue = require('vue');
 
+ import InstantSearch from 'vue-instantsearch';
+
+ Vue.use(InstantSearch);
+
 let authorizations = require('./authorizations');
 
 Vue.prototype.authorize = function (...params) {
