@@ -11,13 +11,10 @@
       return {
         repliesCount: this.thread.replies_count,
         locked: this.thread.locked,
-        editing: false,
         title: this.thread.title,
         body: this.thread.body,
-        form: {
-          title: this.thread.title,
-          body: this.thread.body
-        }
+        form: {},
+        editing: false
       }
     },
     created() {
