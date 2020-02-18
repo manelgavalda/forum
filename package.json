@@ -12,18 +12,21 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
         "cross-env": "^5.1",
         "jquery": "^3.2",
-        "laravel-mix": "^2.0",
+        "laravel-mix": "^2.1.14",
         "lodash": "^4.17.4",
-        "vue": "^2.5.7"
+        "popper.js": "^1.12",
+        "vue": "^2.6"
     },
     "dependencies": {
         "at.js": "^1.5.4",
         "font-awesome": "^4.7.0",
         "jquery.caret": "^0.3.1",
         "moment": "^2.22.2",
+        "postcss-import": "^12.0.1",
+        "tailwind": "^4.0.0",
+        "tailwindcss": "^1.2.0",
         "trix": "^1.0.0",
         "vue-instantsearch": "^1.7.0"
     }

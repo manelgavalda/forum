@@ -1,33 +1,30 @@
 @forelse($threads as $thread)
-    <div class="card">
-        <div class="card-header">
-            <div class="level">
-                <div class="flex">
-                    <h4>
-                        <a href="{{ $thread->path() }}">
-                            @if (auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-                                <strong>{{ $thread->title }}</strong>
-                            @else
-                                {{ $thread->title }}
-                            @endif
-                        </a>
-                    </h4>
-
-                    <h5>Posted By: <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a></h5>
-                </div>
-            </div>
-
-            <a href="{{ $thread->path() }}">{{ $thread->replies_count }} {{ Illuminate\Support\Str::plural('reply', $thread->replies_count) }}</a>
-        </div>
-        <div class="card-body">
-            <div class="body">{!! $thread->body !!}</div>
-        </div>
-
-        <div class="card-footer">
-            {{ $thread->visits }} Visits
-        </div>
+	<div class="rounded shadow-lg my-4 p-4">
+    <div class="font-bold text-xl">
+			<a href="{{ $thread->path() }}">
+				{{ $thread->title }}
+			</a>
     </div>
-    <hr>
+    <div class="border"></div>
+    <div class="flex py-3 text-xs">
+    	<div>
+					{{ $thread->replies_count }}
+					{{ Illuminate\Support\Str::plural('reply', $thread->replies_count) }}
+			</div>
+    	<div class="ml-auto">
+    		Post by:
+	    	<a
+	    		class="font-bold underline"
+	    		href="{{ route('profile', $thread->creator) }}"
+    		>
+	    		{{ $thread->creator->name }}
+	    	</a>
+    	</div>
+    </div>
+    <div class="text-gray-700 text-sm">
+    	{{ $thread->body }}
+    </div>
+  </div>
 @empty
-    <p>There are no relevant results at this time.</p>
+	<p>There are no relevant results at this time.</p>
 @endforelse
