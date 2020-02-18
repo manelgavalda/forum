@@ -38,7 +38,7 @@
 				</div>
 
 				{{-- Viewing the question --}} --}}
-				<div class="rounded shadow-lg mb-4 p-4 bg-gray-200" v-else>
+				<div class="rounded shadow-lg mb-4 p-4" v-else>
 					<div class="flex">
 						<div class="flex">
 							<img
