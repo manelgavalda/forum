@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 /*
@@ -22,7 +23,7 @@ $factory->define(App\Thread::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
         'visits' => 0,
-        'slug' => str_slug($title),
+        'slug' => Str::slug($title),
         'locked' => false
     ];
 });

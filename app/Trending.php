@@ -8,7 +8,8 @@ class Trending
 {
     public function get()
     {
-        return array_map('json_decode', Redis::zrevrange($this->cacheKey(), 0, 4));
+        return [];
+        // return array_map('json_decode', Redis::zrevrange($this->cacheKey(), 0, 4));
     }
 
     public function push($thread)

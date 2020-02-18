@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <p>
                                 This thread was published {{ $thread->created_at->diffForHumans() }} by
-                                <a href="#">{{ $thread->creator->name }}</a>, and currently has <span v-text="repliesCount"></span> {{ str_plural('comment', $thread->replies_count) }}.
+                                <a href="#">{{ $thread->creator->name }}</a>, and currently has <span v-text="repliesCount"></span> {{ Illuminate\Support\Str::plural('comment', $thread->replies_count) }}.
                             </p>
 
                             <p>

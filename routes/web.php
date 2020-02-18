@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+
+Route::redirect('/', 'threads');
 
 Route::view('/scan', 'scan');
 Route::get('/home', 'HomeController@index');

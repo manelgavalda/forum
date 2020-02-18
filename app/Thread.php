@@ -3,6 +3,7 @@
 namespace App;
 
 use Purify;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use App\Traits\RecordsActivity;
 use App\Events\ThreadReceivedNewReply;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    use RecordsActivity, Searchable;
+    use RecordsActivity;
 
     protected $guarded = [];
 
@@ -116,7 +117,7 @@ class Thread extends Model
 
     public function setSlugAttribute($value)
     {
-        $slug = str_slug($value);
+        $slug = Str::slug($value);
 
         if (static::whereSlug($slug)->exists()) {
             $slug = "{$slug}-" . $this->id;
