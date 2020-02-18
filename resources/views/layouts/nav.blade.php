@@ -1,7 +1,6 @@
-<nav class="navbar navbar-expand-md">
-	<div class="w-5/6 m-auto">
+<nav class="navbar-expand-md">
+	<div class="w-4/6 m-auto">
 		<div class="navbar-collapse">
-
 			<ul class="flex">
 				<li>
 					<a class="text-xl" href="/threads">Threads</a>
@@ -47,3 +46,4 @@
 		</div>
 	</div>
 </nav>
+<div class="border-2 mt-4"></div>
