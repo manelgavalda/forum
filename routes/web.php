@@ -15,9 +15,9 @@
 Auth::routes();
 
 Route::redirect('/', 'threads');
+Route::redirect('/home', 'threads');
 
 Route::view('/scan', 'scan');
-Route::get('/home', 'HomeController@index');
 Route::get('/threads/create', 'ThreadsController@create');
 Route::get('/threads/search', 'SearchController@show');
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
