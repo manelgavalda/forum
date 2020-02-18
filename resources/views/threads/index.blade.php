@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="w-4/6 m-auto">
+	<div class="m-auto">
 		@forelse($threads as $thread)
-			<div class="rounded shadow-lg my-4 p-4">
+			<div class="rounded shadow-lg my-4 p-4 hover:bg-gray-200">
 		    <div class="font-bold text-xl">
 					<a href="{{ $thread->path() }}">
 						{{ $thread->title }}
@@ -34,5 +34,6 @@
 		@endforelse
 
 		{{ $threads->render() }}
+
 	</div>
 @endsection

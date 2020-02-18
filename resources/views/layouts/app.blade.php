@@ -34,7 +34,7 @@
 		<div class="pb-20">
 			@include('layouts.nav')
 		</div>
-		<div>
+		<div class="m-auto w-5/6 lg:w-4/6">
 			@yield('content')
 			<flash message="{{ session('flash') }}"></flash>
 		</div>
