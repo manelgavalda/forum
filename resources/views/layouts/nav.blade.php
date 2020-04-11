@@ -1,24 +1,13 @@
-<div class="navbar-expand-md bg-gray-100 shadow-md py-2 fixed w-full z-10">
-	<div class="w-4/6 m-auto navbar-collapse">
-		<ul class="flex">
-			<li>
-				<a class="text-xl" href="/threads">Threads</a>
-			</li>
-			<li>
-				<a class="text-xl ml-5" href="/threads/create">New Thread</a>
-			</li>
-		</ul>
+<nav class="navbar-expand-md bg-gray-100 border py-2 fixed w-full z-10">
+	<div class="w-5/6 m-auto navbar-collapse uppercase">
+		<a class="mr-2" href="/threads">Threads</a>
+		<a href="/threads/create">New Thread</a>
 
-		<ul class="ml-auto">
+		<div class="ml-auto">
 			@guest
-				<div class="flex">
-					<li>
-						<a class="nav-link" href="{{ route('login') }}">Login</a>
-					</li>
-					<li>
-						<a class="nav-link" href="{{ route('register') }}">Register</a>
-					</li>
-				</div>
+		      	<a href="{{ route('login') }}" class="text-xs font-bold py-1 px-2 border-2 rounded text-blue-600 border-blue-600 hover:border-blue-400 hover:text-blue-500">Log in</a>
+
+		      	<a href="{{ route('register') }}" class="text-xs font-bold py-1 px-2 border-2 rounded bg-blue-600 text-white border-blue-600 hover:bg-blue-400 hover:border-blue-400 hover:text-blue-500">Sign up</a>
 			@else
 				<user-notifications></user-notifications>
 				<li class="nav-item dropdown">
@@ -43,7 +32,6 @@
 					</div>
 				</li>
 			@endguest
-		</ul>
+		</div>
 	</div>
-</div>
-{{-- <div class="border-2 mt-4"></div> --}}
+</nav>
