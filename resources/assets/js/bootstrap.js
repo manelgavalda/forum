@@ -1,3 +1,7 @@
+require('@fortawesome/fontawesome');
+require('@fortawesome/fontawesome-free-solid');
+require('@fortawesome/fontawesome-free-regular');
+require('@fortawesome/fontawesome-free-brands');
 
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
