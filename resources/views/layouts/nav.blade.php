@@ -1,7 +1,9 @@
-<nav class="navbar-expand-md bg-gray-100 border py-2 fixed w-full z-10">
-	<div class="w-5/6 m-auto navbar-collapse uppercase">
-		<a class="mr-2" href="/threads">Threads</a>
-		<a href="/threads/create">New Thread</a>
+<nav class="bg-gray-100 border py-2 fixed w-full z-10">
+	<div class="flex w-5/6 m-auto uppercase">
+		<div>
+			<a class="mr-2" href="/threads">Threads</a>
+			<a href="/threads/create">New Thread</a>
+		</div>
 
 		<div class="ml-auto">
 			@guest
