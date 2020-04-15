@@ -1,7 +1,7 @@
 <nav class="bg-gray-100 border py-2 fixed w-full z-10">
-	<div class="flex w-5/6 m-auto uppercase">
+	<div class="flex w-5/6 m-auto">
 		<div>
-			<a class="mr-2" href="/threads">Threads</a>
+			<a class="mr-5 uppercase" href="/threads"><b><i>Threads</i></b></a>
 			<a href="/threads/create">New Thread</a>
 		</div>
 
