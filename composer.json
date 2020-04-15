@@ -9,18 +9,19 @@
         "algolia/algoliasearch-client-php": "^2.2",
         "fideloper/proxy": "^4.0",
         "kitetail/zttp": "^0.6.0",
-        "laravel/framework": "6.2",
-        "laravel/scout": "^7.0",
+        "laravel/framework": "7.0",
+        "laravel/scout": "^8.0",
         "laravel/tinker": "^2.0",
+        "laravel/ui": "^2.0",
         "predis/predis": "^1.1",
         "stevebauman/purify": "^3.0"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
+        "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "classmap": [
