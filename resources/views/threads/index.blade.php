@@ -3,15 +3,26 @@
 @section('content')
 	@forelse($threads as $thread)
 		<div class="my-2 py-1 pl-10 rounded-sm cursor-pointer border border-gray-400 hover:border-gray-600">
-	    	<div class="text-xs text-gray-600">
-	    		Posted by
-		    	<a
-		    		class="hover:underline"
-		    		href="{{ route('profile', $thread->creator) }}"
-	    		>
-		    		{{ $thread->creator->name }}
-		    	</a>
-		    	{{ $thread->created_at->diffForHumans() }}
+			<div class="flex items-center">
+				<div class="text-sm font-bold mr-1">
+					<a
+			    		class="hover:underline"
+						href="{{ route('threads', $thread->channel)}}"
+					>
+						r/{{ $thread->channel->name }}
+					</a>
+
+				</div>
+		    	<div class="text-xs text-gray-600">
+		    		• Posted by
+			    	<a
+			    		class="hover:underline"
+			    		href="{{ route('profile', $thread->creator) }}"
+		    		>
+			    		{{ $thread->creator->name }}
+			    	</a>
+			    	{{ $thread->created_at->diffForHumans() }}
+		    	</div>
 	    	</div>
 		    <div class="font-semibold text-xl">
 					<a href="{{ $thread->path() }}">

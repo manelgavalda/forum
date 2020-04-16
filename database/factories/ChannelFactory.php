@@ -17,7 +17,7 @@ $factory->define(App\Channel::class, function (Faker $faker) {
     $name = $faker->word;
 
     return [
-        'name' => ucfirst($name),
+        'name' => $name,
         'slug' => $name
     ];
 });
