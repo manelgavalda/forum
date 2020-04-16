@@ -27,7 +27,11 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.0.0/trix.css">
 
-	<style></style>
+	<style>
+		.dropdown:hover .dropdown-menu {
+		  	display: block;
+		}
+	</style>
 
 	@yield('header')
 </head>

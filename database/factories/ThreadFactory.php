@@ -17,8 +17,8 @@ use Faker\Generator as Faker;
 $factory->define(App\Thread::class, function (Faker $faker) {
     $title = $faker->sentence;
     return [
-        'user_id' => factory(App\User::class)->create(),
-        'channel_id' => factory(App\Channel::class)->create(),
+        'user_id' => factory(App\User::class),
+        'channel_id' => factory(App\Channel::class),
         'title' => $title,
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
