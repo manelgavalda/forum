@@ -1,41 +1,50 @@
 <template>
-  <div :id="'reply-'+id" class="card" :class="isBest ? 'bg-success' : ''">
-    <div class="card-header">
-      <div class="level">
-        <h5 class="flex">
-          <a :href="'/profiles/'+reply.owner.name"
-            v-text="reply.owner.name">
-          </a> said <span v-text="ago"></span>
-      </h5>
+  <div
+    :id="'reply-'+id"
+    class="border-l-2 pl-3"
+    :class="isBest ? 'bg-success' : ''"
+  >
+    <div>
+      <div class="text-xs text-gray-600">
+        <a
+          class="hover:underline"
+          :href="'/profiles/'+reply.owner.name"
+          v-text="reply.owner.name"
+        >
+        </a> said <span v-text="ago"></span>
+      </div>
       <div v-if="signedIn">
         <favorite :reply="reply"></favorite>
       </div>
     </div>
-  </div>
-  <div class="card-body">
-    <div v-if="editing">
-      <form @submit.prevent="update">
-        <div class="form-group">
-          <wysiwyg v-model="body"></wysiwyg>
-        </div>
+    <div class="card-body">
+      <div v-if="editing">
+        <form @submit.prevent="update">
+          <div class="form-group">
+            <wysiwyg v-model="body"></wysiwyg>
+          </div>
 
-        <button class="btn btn-xs btn-primary">Update</button>
-        <button class="btn btn-xs btn-link" @click="editing = false" type="button">Cancel</button>
-      </form>
+          <button class="btn btn-xs btn-primary">Update</button>
+          <button class="btn btn-xs btn-link" @click="editing = false" type="button">Cancel</button>
+        </form>
+      </div>
+
+      <div
+        class="mb-8"
+        v-else
+        v-html="body"
+      ></div>
     </div>
 
-    <div v-else v-html="body"></div>
-  </div>
+    <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
+      <div v-if="authorize('owns', reply)">
+        <button class="btn btn-xs mr-1" @click="editing = true">Edit</button>
+        <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
+      </div>
 
-  <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
-    <div v-if="authorize('owns', reply)">
-      <button class="btn btn-xs mr-1" @click="editing = true">Edit</button>
-      <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
+      <button class="btn btn-xs btn-default mr-1 ml-a" @click="markBestReply" v-if="authorize('owns', reply.thread)">Best Reply?</button>
     </div>
-
-    <button class="btn btn-xs btn-default mr-1 ml-a" @click="markBestReply" v-if="authorize('owns', reply.thread)">Best Reply?</button>
   </div>
-</div>
 </template>
 <script>
   import Favorite from './Favorite.vue';

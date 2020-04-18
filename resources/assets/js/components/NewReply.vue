@@ -10,8 +10,13 @@
         @click="addReply">Post</button>
     </div>
 
-    <p class="text-center" v-else>
-      Please <a href="/login">sign in</a> to participate in the discussion.
+    <p class="text-center font-semibold" v-else>
+      Please
+      <a
+        href="/login"
+        class="hover:underline text-gray-600"
+      >sign in</a>
+      to participate in the discussion.
     </p>
   </div>
 </template>

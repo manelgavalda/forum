@@ -9,7 +9,7 @@
 		:thread="{{ $thread }}"
 		inline-template
 	>
-		<div class="rounded border border-gray-400 p-10">
+		<div class="rounded border border-gray-400 px-10 py-4">
 			<div>
 				{{-- Editing the question --}}
 				<div class="card" v-if="editing">

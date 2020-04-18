@@ -95278,6 +95278,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -95748,26 +95757,25 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "card",
+      staticClass: "border-l-2 pl-3",
       class: _vm.isBest ? "bg-success" : "",
       attrs: { id: "reply-" + _vm.id }
     },
     [
-      _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "level" }, [
-          _c("h5", { staticClass: "flex" }, [
-            _c("a", {
-              attrs: { href: "/profiles/" + _vm.reply.owner.name },
-              domProps: { textContent: _vm._s(_vm.reply.owner.name) }
-            }),
-            _vm._v(" said "),
-            _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
-          ]),
-          _vm._v(" "),
-          _vm.signedIn
-            ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
-            : _vm._e()
-        ])
+      _c("div", [
+        _c("div", { staticClass: "text-xs text-gray-600" }, [
+          _c("a", {
+            staticClass: "hover:underline",
+            attrs: { href: "/profiles/" + _vm.reply.owner.name },
+            domProps: { textContent: _vm._s(_vm.reply.owner.name) }
+          }),
+          _vm._v(" said "),
+          _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
+        ]),
+        _vm._v(" "),
+        _vm.signedIn
+          ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -95821,7 +95829,10 @@ var render = function() {
                 ]
               )
             ])
-          : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } })
+          : _c("div", {
+              staticClass: "mb-8",
+              domProps: { innerHTML: _vm._s(_vm.body) }
+            })
       ]),
       _vm._v(" "),
       _vm.authorize("owns", _vm.reply) ||
@@ -95935,6 +95946,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_at_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_at_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_caret__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_caret___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_caret__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -97706,10 +97722,17 @@ var render = function() {
             [_vm._v("Post")]
           )
         ])
-      : _c("p", { staticClass: "text-center" }, [
-          _vm._v("\n    Please "),
-          _c("a", { attrs: { href: "/login" } }, [_vm._v("sign in")]),
-          _vm._v(" to participate in the discussion.\n  ")
+      : _c("p", { staticClass: "text-center font-semibold" }, [
+          _vm._v("\n    Please\n    "),
+          _c(
+            "a",
+            {
+              staticClass: "hover:underline text-gray-600",
+              attrs: { href: "/login" }
+            },
+            [_vm._v("sign in")]
+          ),
+          _vm._v("\n    to participate in the discussion.\n  ")
         ])
   ])
 }
