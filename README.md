@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/manelgavalda/forum/master/public/images/forum.png" width="900"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/manelgavalda/forum/master/public/images/forum1.png" width="900"></p>
 
 ## :radio_button: About Forum
 
