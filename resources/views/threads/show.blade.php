@@ -60,7 +60,7 @@
 				</div>
 
 				{{-- Viewing the question --}} --}}
-				<div class="mb-10" v-else>
+				<div class="mb-8 pb-2 border-b" v-else>
 					<div class="flex items-center">
 						<div class="text-sm font-bold mr-1">
 							<a
