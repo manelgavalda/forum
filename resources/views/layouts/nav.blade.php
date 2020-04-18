@@ -22,7 +22,7 @@
 		  	</div>
 			<a href="/threads/create">New Thread</a>
 		</div>
-		<div class="ml-auto">
+		<div class="ml-auto my-auto">
 			@guest
 		      	<a href="{{ route('login') }}" class="text-xs font-bold py-1 px-2 border-2 rounded text-blue-600 border-blue-600 hover:border-blue-400 hover:text-blue-500">Log in</a>
 
