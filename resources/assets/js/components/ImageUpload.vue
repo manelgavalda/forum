@@ -1,5 +1,5 @@
 <template>
-  <input type="file" accept="image/*" @change="onChange">
+  <input class="bg-indigo-600 hover:bg-blue-800 text-white font-bold py-2 px-4 inline-flex items-center rounded" type="file" accept="image/*" @change="onChange">
 </template>
 <script>
   export default {

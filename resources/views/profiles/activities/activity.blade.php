@@ -1,12 +1,12 @@
-<div class="card">
-    <div class="card-header">
-        <div class="level">
-            <span class="flex">
-                {{ $heading }}
-            </span>
-        </div>
+<div class="pl-2 p-1 bg-gray-200 text-gray-800 mb-1">
+  <div class="card-header">
+    <div class="level">
+      <div class="text-lg">
+        {{ $heading }}
+      </div>
     </div>
-    <div class="card-body">
-        {{ $body }}
-    </div>
+  </div>
+  <div class="text-xs">
+    {{ $body }}
+  </div>
 </div>

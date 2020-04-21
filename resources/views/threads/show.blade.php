@@ -69,19 +69,18 @@
 							>
 								r/{{ $thread->channel->name }}
 							</a>
-
 						</div>
-				    	<div class="text-xs text-gray-600">
-				    		• Posted by
-					    	<a
-					    		class="hover:underline"
-					    		href="{{ route('profile', $thread->creator) }}"
-				    		>
-					    		{{ $thread->creator->name }}
-					    	</a>
-					    	{{ $thread->created_at->diffForHumans() }}
-				    	</div>
+			    	<div class="text-xs text-gray-600">
+			    		• Posted by
+				    	<a
+				    		class="hover:underline"
+				    		href="{{ route('profile', $thread->creator) }}"
+			    		>
+				    		{{ $thread->creator->name }}
+				    	</a>
+				    	{{ $thread->created_at->diffForHumans() }}
 			    	</div>
+		    	</div>
 					<div class="font-bold text-xl">
 						<a href="{{ $thread->path() }}">
 							<span v-text="title"></span>
@@ -112,7 +111,7 @@
 					@removed="repliesCount--"
 				></replies>
 			</div>
-			<p>
+			<p class="pt-2">
 				<subscribe-button
 					:active="{{ json_encode($thread->isSubscribedTo) }}"
 					v-if="signedIn"

@@ -1,13 +1,16 @@
 <template>
   <div>
     <div v-if="signedIn">
-      <div class="form-group">
+      <div class="pb-2">
         <wysiwyg name="body" v-model="body" placeholder="Have something to say?" :shouldClear="completed"></wysiwyg>
       </div>
 
-      <button type="submit"
-        class="btn btn-default"
-        @click="addReply">Post</button>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        @click="addReply"
+      >
+        Post
+      </button>
     </div>
 
     <p class="text-center font-semibold" v-else>

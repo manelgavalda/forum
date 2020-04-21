@@ -1,14 +1,21 @@
 <template>
   <div>
-    <div class="level">
-      <img :src="avatar" width="50" heigth="200" class="mr-1">
-      <h1 v-text="user.name"/>
+    <div class="flex items-center mb-4">
+      <img
+        :src="avatar"
+        width="50"
+        heigth="200"
+        class="mr-1"
+      >
+      <div
+        v-text="user.name"
+        class="text-lg"
+      ></div>
     </div>
 
-      <form v-if="canUpdate" method="post" enctype="multipart/form-data">
-        <image-upload @loaded="onLoad"></image-upload>
-      </form>
-
+    <form v-if="canUpdate" method="post" enctype="multipart/form-data">
+      <image-upload @loaded="onLoad"></image-upload>
+    </form>
   </div>
 </template>
 <script>

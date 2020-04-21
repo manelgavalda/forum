@@ -94624,6 +94624,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -94750,6 +94757,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("input", {
+    staticClass:
+      "bg-indigo-600 hover:bg-blue-800 text-white font-bold py-2 px-4 inline-flex items-center rounded",
     attrs: { type: "file", accept: "image/*" },
     on: { change: _vm.onChange }
   })
@@ -94773,13 +94782,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "level" }, [
+    _c("div", { staticClass: "flex items-center mb-4" }, [
       _c("img", {
         staticClass: "mr-1",
         attrs: { src: _vm.avatar, width: "50", heigth: "200" }
       }),
       _vm._v(" "),
-      _c("h1", { domProps: { textContent: _vm._s(_vm.user.name) } })
+      _c("div", {
+        staticClass: "text-lg",
+        domProps: { textContent: _vm._s(_vm.user.name) }
+      })
     ]),
     _vm._v(" "),
     _vm.canUpdate
@@ -95141,45 +95153,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { Reply: __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default.a, NewReply: __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default.a },
+  components: { Reply: __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default.a, NewReply: __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default.a },
 
-    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_collection__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_collection__["a" /* default */]],
 
-    data: function data() {
-        return { dataSet: false };
+  data: function data() {
+    return { dataSet: false };
+  },
+  created: function created() {
+    this.fetch();
+  },
+
+
+  methods: {
+    fetch: function fetch(page) {
+      axios.get(this.url(page)).then(this.refresh);
     },
-    created: function created() {
-        this.fetch();
+    url: function url(page) {
+      if (!page) {
+        var query = location.search.match(/page=(\d+)/);
+
+        page = query ? query[1] : 1;
+      }
+
+      return location.pathname + '/replies?page=' + page;
     },
+    refresh: function refresh(_ref) {
+      var data = _ref.data;
 
-
-    methods: {
-        fetch: function fetch(page) {
-            axios.get(this.url(page)).then(this.refresh);
-        },
-        url: function url(page) {
-            if (!page) {
-                var query = location.search.match(/page=(\d+)/);
-
-                page = query ? query[1] : 1;
-            }
-
-            return location.pathname + '/replies?page=' + page;
-        },
-        refresh: function refresh(_ref) {
-            var data = _ref.data;
-
-            this.dataSet = data;
-            this.items = data.data;
-            window.scrollTo(0, 0);
-        }
+      this.dataSet = data;
+      this.items = data.data;
+      window.scrollTo(0, 0);
     }
+  }
 });
 
 /***/ }),
@@ -95946,6 +95959,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_at_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_at_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_caret__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_caret___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_caret__);
+//
+//
+//
 //
 //
 //
@@ -97692,7 +97708,7 @@ var render = function() {
       ? _c("div", [
           _c(
             "div",
-            { staticClass: "form-group" },
+            { staticClass: "pb-2" },
             [
               _c("wysiwyg", {
                 attrs: {
@@ -97715,11 +97731,11 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-default",
-              attrs: { type: "submit" },
+              staticClass:
+                "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
               on: { click: _vm.addReply }
             },
-            [_vm._v("Post")]
+            [_vm._v("\n      Post\n    ")]
           )
         ])
       : _c("p", { staticClass: "text-center font-semibold" }, [
@@ -97809,7 +97825,7 @@ var render = function() {
       _vm.$parent.locked
         ? _c("p", [
             _vm._v(
-              "\n      This thread has been locked. No more replies are allowed.\n    "
+              "\n    This thread has been locked. No more replies are allowed.\n  "
             )
           ])
         : _c("new-reply", { on: { created: _vm.add } })
@@ -97885,19 +97901,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['active'],
-    computed: {
-        classes: function classes() {
-            return ['btn', this.active ? 'btn-primary' : 'btn-default'];
-        }
-    },
-    methods: {
-        subscribe: function subscribe() {
-            axios[this.active ? 'delete' : 'post'](location.pathname + '/subscriptions');
-
-            this.active = !this.active;
-        }
+  props: ['active'],
+  computed: {
+    classes: function classes() {
+      return ['btn', this.active ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-500 hover:bg-gray-700'];
     }
+  },
+  methods: {
+    subscribe: function subscribe() {
+      axios[this.active ? 'delete' : 'post'](location.pathname + '/subscriptions');
+
+      this.active = !this.active;
+    }
+  }
 });
 
 /***/ }),
@@ -97908,9 +97924,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
-    _vm._v("Subscribe")
-  ])
+  return _c(
+    "button",
+    {
+      staticClass: "font-bold py-2 px-4 rounded text-white",
+      class: _vm.classes,
+      on: { click: _vm.subscribe }
+    },
+    [_vm._v("Subscribe")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
